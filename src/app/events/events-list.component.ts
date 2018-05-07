@@ -2,12 +2,21 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-events-list',
-  templateUrl: './events-list.component.html',
+  template: `
+  <div>
+    <h1>Upcoming Angular Events</h1>
+    <hr/>
+    <event-thumbnail
+      (eventClick)="handleEventClicked($event)"
+      [event]="event1">
+    </event-thumbnail>
+  </div>
+  `,
   styleUrls: ['./events-list.component.css']
 })
 export class EventsListComponent implements OnInit {
 
-  event = {
+  event1 = {
     id: 1,
     name: 'Angular Connect',
     date: '9/26/2000',
@@ -19,6 +28,10 @@ export class EventsListComponent implements OnInit {
       city: 'London',
       country: 'England'
     }
+  }
+
+  handleEventClicked(data) {
+    console.log('received:', data);
   }
 
   constructor() { }
